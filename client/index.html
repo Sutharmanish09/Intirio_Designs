@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interio-Designs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: #fafafa;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 12px;
+            background: #2c2c2c;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            font-size: 15px;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #2c2c2c;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #2c2c2c;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .contact-btn {
+            background: #2c2c2c;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .contact-btn:hover {
+            background: #1a1a1a;
+            transform: translateY(-1px);
+        }
+
+        .profile-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #2c2c2c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+            padding-top: 100px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 8rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            color: #a8a8a8;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: #a8a8a8;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: #2c2c2c;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            font-size: 15px;
+        }
+
+        .btn-primary:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .btn-secondary::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #2c2c2c;
+        }
+
+        .btn-secondary:hover {
+            color: #666;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .image-container {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .image-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.12);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .stats {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            margin: 0 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 20%;
+            left: -10%;
+            z-index: -1;
+        }
+
+        .floating-square {
+            width: 100px;
+            height: 100px;
+            background: rgba(44, 44, 44, 0.03);
+            border-radius: 8px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(3deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+                padding: 0 1.5rem;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .stats {
+                position: static;
+                margin-top: 3rem;
+                gap: 2rem;
+            }
+        }
+
+        /* Subtle animations */
+        .hero-text > * {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .hero-title { animation-delay: 0.1s; }
+        .hero-subtitle { animation-delay: 0.2s; }
+        .hero-description { animation-delay: 0.3s; }
+        .hero-buttons { animation-delay: 0.4s; }
+
+        .hero-image {
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Slider styles */
+        .slider-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .slider {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transform: translateX(100%);
+            transition: transform 0.5s ease-out;
+        }
+
+        .slider.active {
+            transform: translateX(0);
+        }
+
+        .slider a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .slider a:hover {
+            color: #ff6b6b;
+        }
+
+        .slider-toggle {
+      position: absolute;
+      left: 1430px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-btn {
+  background: #2c2c2c;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.header-btn:hover {
+  background: #1a1a1a;
+  transform: translateY(-1px);
+}
+
+.header-btn.secondary {
+  background: transparent;
+  color: #2c2c2c;
+  border: 1px solid #2c2c2c;
+}
+
+.header-btn.secondary:hover {
+  background: #2c2c2c;
+  color: white;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-icon"><img src="Untitled_design.png" height="32" width="32" alt="Logo"></div>
+      Interio-Designs
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">Interior</a></li>
+      <li><a href="#designs">Catalogs</a></li>
+      <li><a href="#catalogue">Designs</a></li>
+      <li><a href="#about">More</a></li>
+    </ul>
+    <div class="header-actions">
+      <a href="login.html" class="header-btn">Sign In</a>
+      <a href="register.html" class="header-btn secondary">Register</a>
+      <div class="profile-icon"><img src="p.png" height="32" width="32" alt="Profile"></div>
+    </div>
+  </nav>
+</header>
+
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-text">
+                <h1 class="hero-title">REDEFINE</h1>
+                <h2 class="hero-subtitle">Your Home With Modern Design And Timeless Furniture</h2>
+                <p class="hero-description">
+                    We create sophisticated interior spaces that blend contemporary aesthetics with functional design.
+                    Transform your home into a sanctuary of style and comfort.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">View Portfolio</a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="floating-elements">
+                    <div class="floating-square"></div>
+                </div>
+                <div class="image-container">
+                    <img src="1.jpg" alt="Modern Interior Design">
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Satisfied</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <div class="slider-container">
+        
+        <div class="slider" id="slider">
+            <a href="#">Sign In</a>
+            <a href="#">Register</a>
+        </div> -->
+    </div>
+
+    <script>
+        function toggleSlider() {
+            const slider = document.getElementById('slider');
+            slider.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

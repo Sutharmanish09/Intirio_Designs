@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - Interio Designs</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: url('l1.jpg') no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    .card {
+        display: flex;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+        max-width: 700px; 
+        width: 90%;
+        overflow: hidden;
+    }
+    .form-side {
+        flex: 1;
+        min-width: 300px;
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .form-side h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    form input {
+        padding: 0.8rem 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s ease;
+        background: rgba(255,255,255,0.8);
+    }
+    form input:focus {
+        border-color: #2c2c2c;
+    }
+    .btn {
+        background: #6A4F36;
+        color: white;
+        padding: 0.9rem;
+        border: none;
+        border-radius: 50px;
+        font-weight: 500;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .btn:hover {
+        background: #244443;
+        transform: translateY(-1px);
+    }
+    .image-side {
+        flex: 1;
+        background: url('l2.jpg') no-repeat center center/cover;
+        min-height: 516px; 
+    }
+    @media(max-width: 768px) {
+        .card {
+            flex-direction: column;
+            max-width: 95%;
+        }
+        .image-side {
+            height: 250px;
+        }
+    }
+    .google-btn {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: #2c2c2c;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    padding: 0.7rem;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+  }
+.google-btn img {
+  height: 30px;
+  margin-right: 12px;
+  border-radius: 20px;
+}
+.google-btn:hover {
+  background: #f1f1f1; 
+  box-shadow : 2px 6px rgba(0,0,0,0.08);
+}
+
+.new {
+position: absolute;
+font-family: 'Inria Serif';
+font-style: normal;
+font-weight: 400;
+line-height: 20px;
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.23px;
+width: 300px;
+height: 20px;
+left: 140px;
+top: 20px;
+font-size: 30px;
+color: #1F3E3A;
+}
+.link {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 14px;
+  }
+  .link a {
+    color: #2c2c2c;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .link a:hover {
+    color: #666;
+  }
+</style>
+<script>
+function googleSignIn() {
+  alert('Google Sign-In not yet connected.\n(You can integrate real OAuth here)');
+}
+</script>
+</head>
+<body>
+<div class="card">
+    <div class="form-side">
+        <h2 class="new" id="new1">SIGN IN</h2>
+        <form>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit" class="btn">Submit</button>
+            <div class="google-btn" onclick="googleSignIn()">
+              <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo">
+              <!-- <span>Sign in with Google</span> -->
+            </div>
+        </form>
+        <div class="link">
+    Don't have an account? <a href="register.html ">Sign Up</a>
+  </div>
+    </div>
+    <div class="image-side"></div>
+</div>
+</body>
+</html>

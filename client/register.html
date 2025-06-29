@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - Interio Designs</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: url('l1.jpg') no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    .card {
+        display: flex;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+        max-width: 900px; 
+        width: 90%;
+        overflow: hidden;
+    }
+    .form-side {
+        flex: 1;
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .form-side h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+    .form-step {
+        display: none;
+        flex-direction: column;
+    }
+    .form-step.active {
+        display: flex;
+    }
+    form input, form select {
+        padding: 0.8rem 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s ease;
+        background: rgba(255,255,255,0.8);
+    }
+    form input:focus, form select:focus {
+        border-color: #2c2c2c;
+    }
+    .btn {
+        background: #4D845D;
+        color: white;
+        padding: 0.9rem;
+        border: none;
+        border-radius: 50px;
+        font-weight: 500;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .btn:hover {
+        background: #007A53;
+        transform: translateY(-1px);
+    }
+    .image-side {
+        flex: 1;
+        background: url('l2.png') no-repeat center center/cover;
+        min-height: 516px; 
+    }
+    @media(max-width: 768px) {
+        .card {
+            flex-direction: column;
+            max-width: 95%;
+        }
+        .image-side {
+            height: 250px;
+        }
+    }
+    .new {
+        font-family: 'Inria Serif';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 40px;
+        text-align: center;
+        color: #2F3E46;
+        margin-bottom: 1rem;
+    }
+    .error {
+        color: red;
+        font-size: 12px;
+        margin-top: -0.5rem;
+        margin-bottom: 0.5rem;
+    }
+</style>
+</head>
+<body>
+<div class="card">
+    <div class="form-side">
+        <h2 class="new">SIGN UP</h2>
+        <form id="signupForm">
+            <!-- Step 1 -->
+            <div class="form-step active" id="step1">
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="text" id="referral" placeholder="Referral Code">
+                <button type="button" class="btn" onclick="nextStep(1)">Next</button>
+            </div>
+            <!-- Step 2 -->
+            <div class="form-step" id="step2">
+                <input type="text" id="phone" placeholder="Phone Number" maxlength="10" required>
+                <select id="state" required>
+                    <option value="">Select State</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                </select>
+                <select id="city" required>
+                    <option value="">Select City</option>
+                </select>
+                <button type="button" class="btn" onclick="nextStep(2)">Next</button>
+            </div>
+            <!-- Step 3 -->
+            <div class="form-step" id="step3">
+                <input type="text" id="pincode" placeholder="Pincode" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                <div class="error" id="passwordError"></div>
+                <button type="submit" class="btn">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="image-side"></div>
+</div>
+
+<script>
+const statesAndCities = {
+    Gujarat: ['Ahmedabad', 'Surat', 'Vadodara', 'Rajkot'],
+    Maharashtra: ['Mumbai', 'Pune', 'Nagpur', 'Nashik']
+};
+
+document.getElementById('state').addEventListener('change', function() {
+    const cities = statesAndCities[this.value] || [];
+    const citySelect = document.getElementById('city');
+    citySelect.innerHTML = '<option value="">Select City</option>';
+    cities.forEach(city => {
+        citySelect.innerHTML += `<option value="${city}">${city}</option>`;
+    });
+});
+
+function nextStep(step) {
+    if (step === 1) {
+        // validate name and email
+        if (!document.getElementById('name').value || !document.getElementById('email').value) {
+            alert('Please fill Name and Email');
+            return;
+        }
+    } else if (step === 2) {
+        // validate phone (must be 10 digits)
+        const phone = document.getElementById('phone').value;
+        if (!/^\d{10}$/.test(phone)) {
+            alert('Phone number must be 10 digits');
+            return;
+        }
+        if (!document.getElementById('state').value || !document.getElementById('city').value) {
+            alert('Please select state and city');
+            return;
+        }
+    }
+    document.getElementById(`step${step}`).classList.remove('active');
+    document.getElementById(`step${step+1}`).classList.add('active');
+}
+
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const pass = document.getElementById('password').value;
+    const confirmPass = document.getElementById('confirmPassword').value;
+    const passError = document.getElementById('passwordError');
+
+    // password rules: min 6 chars, at least 1 uppercase, 1 symbol
+    if (pass.length < 6 || !/[A-Z]/.test(pass) || !/[^a-zA-Z0-9]/.test(pass)) {
+        passError.textContent = 'Password must be at least 6 characters, include 1 uppercase & 1 symbol.';
+        return;
+    } else if (pass !== confirmPass) {
+        passError.textContent = 'Passwords do not match.';
+        return;
+    }
+    passError.textContent = '';
+    alert('Form submitted successfully!');
+    this.reset();
+    // optional: redirect or do ajax here
+});
+</script>
+</body>
+</html>
